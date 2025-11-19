@@ -1,4 +1,4 @@
-package com.example.propti.config;
+package com.propti.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +14,10 @@ public class WebConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:3000")
-                        .allowedMethods("POST");
+                        .allowedOrigins("http://localhost:3000", "http://127.0.0.1:3000")
+                        .allowedMethods("OPTIONS", "GET", "POST", "PUT", "PATCH", "DELETE")
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }

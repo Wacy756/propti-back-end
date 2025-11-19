@@ -1,0 +1,24 @@
+spring:
+  sql:
+    init:
+      mode: always      
+  application:
+    name: propti
+  datasource:
+    url: jdbc:postgresql://ep-holy-shape-abcvbtk6-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+    username: neondb_owner
+    password: npg_W7edko3LZlYB
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    defer-datasource-initialization: true  # let JPA create/update, then run data.sql
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE

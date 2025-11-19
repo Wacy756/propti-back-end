@@ -1,27 +1,50 @@
 package com.propti.auth.entity;
 
 import com.propti.auth.dto.UserRegistrationRequest;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Getter
+@Entity
+@Table(name = "users") // table name in Postgres
+@NoArgsConstructor // required by JPA
 public class User {
-    // private UUID id;
-    private final String fullName;
-    private final String email;
-    private final String passwordHash;
-    private final String role;
-    private final Instant createdAt = Instant.now();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
+
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
+    @Column(name = "role", nullable = false)
+    private String role;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Instant createdAt;
 
     public User(final UserRegistrationRequest request) {
-        // TODO -- how to randomly generate ID?
-
         this.fullName = request.fullName();
-        this.email = request.email();
-        this.passwordHash = request.password();
+        this.email = request.email().toLowerCase();
+        this.passwordHash = request.password(); // hashing will be implemented soon
         this.role = request.role();
     }
 
+    @PrePersist
+    protected void onCreate() {
+        if (createdAt == null) {
+            createdAt = Instant.now();
+        }
+    }
 }
