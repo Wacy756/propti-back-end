@@ -33,7 +33,7 @@ public class MaintenanceRequest {
     private UUID id;
 
     @Column(name = "landlord_id", nullable = false)
-    private UUID landlordId;
+    private String landlordId;
 
     @Column(name = "property_id")
     private String propertyId;

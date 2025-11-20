@@ -4,7 +4,6 @@ import com.propti.auth.dto.MaintenanceRequestDto;
 import com.propti.auth.entity.MaintenanceRequest;
 import com.propti.auth.repository.MaintenanceRequestRepository;
 import java.util.List;
-import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +17,7 @@ public class MaintenanceRequestService {
     private final MaintenanceRequestRepository maintenanceRequestRepository;
 
     @Transactional(readOnly = true)
-    public List<MaintenanceRequestDto> getOpenRequestsForLandlord(final UUID landlordId) {
+    public List<MaintenanceRequestDto> getOpenRequestsForLandlord(final String landlordId) {
         return maintenanceRequestRepository.findByLandlordIdAndStatusIn(landlordId, OPEN_STATUSES)
                 .stream()
                 .map(this::toDto)
