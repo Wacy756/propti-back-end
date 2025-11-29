@@ -1,7 +1,16 @@
 spring:
   sql:
     init:
-      mode: always      
+      mode: always
+      schema-locations:
+        - classpath:schema/drop-legacy.sql
+        - classpath:schema/maintenance_requests.sql
+        - classpath:schema/properties.sql
+        - classpath:schema/tenancies.sql
+        - classpath:schema/documents.sql
+        - classpath:schema/agents.sql
+        - classpath:schema/users.sql
+        - classpath:schema/invites.sql
   application:
     name: propti
   datasource:
@@ -13,11 +22,15 @@ spring:
     defer-datasource-initialization: true  # let JPA create/update, then run data.sql
     hibernate:
       ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
     show-sql: true
     properties:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        globally_quoted_identifiers: true
 stack:
   api-url: https://api.stack-auth.com
   project-id: 89729a1c-ee23-4355-bc8c-45b0377a0e0d

@@ -11,16 +11,15 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.UUID;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import lombok.*;
 
 @Getter
+@Setter
 @Entity
-@Table(name = "maintenance_requests",
+@Table(name = "MAINTENANCE_REQUESTS",
         indexes = {
-                @Index(name = "idx_maintenance_landlord_status", columnList = "landlord_id,status")
+                @Index(name = "IDX_MAINTENANCE_LANDLORD_STATUS", columnList = "LANDLORD_ID,STATUS")
         })
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,28 +28,28 @@ public class MaintenanceRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "ID", updatable = false, nullable = false)
     private UUID id;
 
-    @Column(name = "landlord_id", nullable = false)
+    @Column(name = "LANDLORD_ID", nullable = false)
     private String landlordId;
 
-    @Column(name = "property_id")
+    @Column(name = "PROPERTY_ID")
     private String propertyId;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "TITLE", nullable = false)
     private String title;
 
-    @Column(name = "description", columnDefinition = "text")
+    @Column(name = "DESCRIPTION", columnDefinition = "text")
     private String description;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "STATUS", nullable = false)
     private String status;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "UPDATED_AT", nullable = false)
     private Instant updatedAt;
 
     @PrePersist
@@ -68,5 +67,10 @@ public class MaintenanceRequest {
     @PreUpdate
     void onUpdate() {
         updatedAt = Instant.now();
+    }
+
+    // Explicit getter to avoid issues when Lombok processing is unavailable
+    public Instant getUpdatedAt() {
+        return updatedAt;
     }
 }

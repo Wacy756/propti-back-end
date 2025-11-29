@@ -68,7 +68,12 @@ public class StackAuthenticationFilter extends OncePerRequestFilter {
         }
 
         final StackUser stackUser = user.get();
-        request.setAttribute(UserPrincipal.REQUEST_ATTRIBUTE, new UserPrincipal(stackUser.id(), stackUser.role()));
+        request.setAttribute(UserPrincipal.REQUEST_ATTRIBUTE, new UserPrincipal(
+                stackUser.id(),
+                stackUser.role(),
+                stackUser.resolvedEmail(),
+                stackUser.resolvedName()
+        ));
         filterChain.doFilter(request, response);
     }
 

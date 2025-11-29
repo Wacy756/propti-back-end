@@ -2,7 +2,7 @@ package com.propti.auth.service;
 
 import com.propti.auth.dto.MaintenanceRequestDto;
 import com.propti.auth.entity.MaintenanceRequest;
-import com.propti.auth.repository.MaintenanceRequestRepository;
+import com.propti.auth.repository.jdbc.MaintenanceRequestJdbcRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class MaintenanceRequestService {
 
     private static final List<String> OPEN_STATUSES = List.of("OPEN", "IN_PROGRESS");
 
-    private final MaintenanceRequestRepository maintenanceRequestRepository;
+    private final MaintenanceRequestJdbcRepository maintenanceRequestRepository;
 
     @Transactional(readOnly = true)
     public List<MaintenanceRequestDto> getOpenRequestsForLandlord(final String landlordId) {
