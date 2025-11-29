@@ -2,7 +2,7 @@ package com.propti.auth.service;
 
 import com.propti.auth.dto.UserDto;
 import com.propti.auth.entity.User;
-import com.propti.auth.repository.UserRepository;
+import com.propti.auth.repository.jdbc.UserJdbcRepository;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserJdbcRepository userRepository;
 
     @Transactional(readOnly = true)
     public UserDto getUser(UUID id) {

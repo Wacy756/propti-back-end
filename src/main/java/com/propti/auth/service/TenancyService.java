@@ -6,8 +6,8 @@ import com.propti.auth.entity.Tenancy;
 import com.propti.auth.entity.Tenancy.AgreementStatus;
 import com.propti.auth.entity.Tenancy.ReferenceStatus;
 import com.propti.auth.entity.Tenancy.TenantStatus;
-import com.propti.auth.repository.PropertyRepository;
-import com.propti.auth.repository.TenancyRepository;
+import com.propti.auth.repository.jdbc.PropertyJdbcRepository;
+import com.propti.auth.repository.jdbc.TenancyJdbcRepository;
 import java.time.Instant;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class TenancyService {
 
-    private final TenancyRepository tenancyRepository;
+    private final TenancyJdbcRepository tenancyRepository;
     private final DocumentService documentService;
-    private final PropertyRepository propertyRepository;
+    private final PropertyJdbcRepository propertyRepository;
 
     @Transactional
     public TenancyDto createTenancy(String landlordId, String propertyId, CreateTenancyRequest request) {

@@ -3,7 +3,7 @@ package com.propti.auth.service;
 import com.propti.auth.dto.CreateDocumentRequest;
 import com.propti.auth.dto.DocumentDto;
 import com.propti.auth.entity.Document;
-import com.propti.auth.repository.DocumentRepository;
+import com.propti.auth.repository.jdbc.DocumentJdbcRepository;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class DocumentService {
 
-    private final DocumentRepository documentRepository;
+    private final DocumentJdbcRepository documentRepository;
 
     @Transactional
     public DocumentDto create(UUID tenancyId, CreateDocumentRequest request) {

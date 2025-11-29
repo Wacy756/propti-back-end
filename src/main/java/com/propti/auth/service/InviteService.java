@@ -6,9 +6,9 @@ import com.propti.auth.entity.Invite;
 import com.propti.auth.entity.Invite.Status;
 import com.propti.auth.entity.Tenancy.TenantStatus;
 import com.propti.auth.entity.User;
-import com.propti.auth.repository.InviteRepository;
-import com.propti.auth.repository.TenancyRepository;
-import com.propti.auth.repository.UserRepository;
+import com.propti.auth.repository.jdbc.InviteJdbcRepository;
+import com.propti.auth.repository.jdbc.TenancyJdbcRepository;
+import com.propti.auth.repository.jdbc.UserJdbcRepository;
 import java.util.List;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class InviteService {
 
-    private final UserRepository userRepository;
-    private final InviteRepository inviteRepository;
-    private final TenancyRepository tenancyRepository;
+    private final UserJdbcRepository userRepository;
+    private final InviteJdbcRepository inviteRepository;
+    private final TenancyJdbcRepository tenancyRepository;
 
     @Transactional
     public InviteDto sendTenantInvite(InviteRequest request) {

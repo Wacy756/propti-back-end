@@ -3,8 +3,8 @@ package com.propti.auth.service;
 import com.propti.auth.dto.PropertyDto;
 import com.propti.auth.entity.Property;
 import com.propti.auth.entity.Tenancy;
-import com.propti.auth.repository.PropertyRepository;
-import com.propti.auth.repository.TenancyRepository;
+import com.propti.auth.repository.jdbc.PropertyJdbcRepository;
+import com.propti.auth.repository.jdbc.TenancyJdbcRepository;
 import com.propti.auth.dto.CreatePropertyRequest;
 import java.util.List;
 import java.util.UUID;
@@ -16,8 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class PropertyService {
 
-    private final PropertyRepository propertyRepository;
-    private final TenancyRepository tenancyRepository;
+    private final PropertyJdbcRepository propertyRepository;
+    private final TenancyJdbcRepository tenancyRepository;
 
     @Transactional(readOnly = true)
     public List<PropertyDto> listForLandlord(String landlordId) {
@@ -82,7 +82,7 @@ public class PropertyService {
             if (tenancy.getTenantStatus() == com.propti.auth.entity.Tenancy.TenantStatus.ACTIVE) {
                 throw new IllegalStateException("Cannot delete a property with an active tenancy.");
             }
-            tenancyRepository.delete(tenancy);
+            tenancyRepository.delete(tenancy.getId());
         }
         propertyRepository.deleteById(id);
     }

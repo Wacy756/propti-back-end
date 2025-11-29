@@ -3,7 +3,7 @@ package com.propti.auth.service;
 import com.propti.auth.dto.AgentStatusDto;
 import com.propti.auth.entity.Agent;
 import com.propti.auth.entity.Agent.AgentStatus;
-import com.propti.auth.repository.AgentRepository;
+import com.propti.auth.repository.jdbc.AgentJdbcRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class AgentService {
 
-    private final AgentRepository agentRepository;
+    private final AgentJdbcRepository agentRepository;
 
     @Transactional
     public AgentStatusDto verifyAgent(String agentId) {
