@@ -59,7 +59,13 @@ public class StackAuthClient {
             }
 
             final StackUserResponse body = response.getBody();
-            return Optional.of(new StackUser(body.id(), body.clientMetadata(), body.serverMetadata()));
+            return Optional.of(new StackUser(
+                    body.id(),
+                    body.email(),
+                    body.name(),
+                    body.clientMetadata(),
+                    body.serverMetadata()
+            ));
         } catch (final RestClientException ex) {
             log.warn("Failed to validate Stack token", ex);
             return Optional.empty();
@@ -68,6 +74,8 @@ public class StackAuthClient {
 
     private record StackUserResponse(
             @JsonProperty("id") String id,
+            @JsonProperty("email") String email,
+            @JsonProperty("name") String name,
             @JsonProperty("client_metadata") Map<String, Object> clientMetadata,
             @JsonProperty("server_metadata") Map<String, Object> serverMetadata
     ) { }

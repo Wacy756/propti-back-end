@@ -69,4 +69,9 @@ public class MaintenanceRequest {
     void onUpdate() {
         updatedAt = Instant.now();
     }
+
+    // Explicit getter to avoid issues when Lombok processing is unavailable
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
 }
