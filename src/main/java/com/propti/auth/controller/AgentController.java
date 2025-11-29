@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AgentController {
 
-    private final AgentService agentService;
+    private AgentService agentService;
 
     @GetMapping("/{agentId}")
     public ResponseEntity<AgentStatusDto> getStatus(@PathVariable String agentId) {

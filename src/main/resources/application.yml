@@ -1,7 +1,16 @@
 spring:
   sql:
     init:
-      mode: always      
+      mode: always
+      schema-locations:
+        - classpath:schema/drop-legacy.sql
+        - classpath:schema/maintenance_requests.sql
+        - classpath:schema/properties.sql
+        - classpath:schema/tenancies.sql
+        - classpath:schema/documents.sql
+        - classpath:schema/agents.sql
+        - classpath:schema/users.sql
+        - classpath:schema/invites.sql
   application:
     name: propti
   datasource:
@@ -18,6 +27,7 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        globally_quoted_identifiers: true
 stack:
   api-url: https://api.stack-auth.com
   project-id: 89729a1c-ee23-4355-bc8c-45b0377a0e0d

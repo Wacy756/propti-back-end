@@ -17,7 +17,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "agents")
+@Table(name = "AGENTS")
 public class Agent {
 
     public enum AgentStatus {
@@ -26,17 +26,17 @@ public class Agent {
     }
 
     @Id
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "ID", nullable = false, updatable = false)
     private String id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "STATUS", nullable = false)
     private AgentStatus status = AgentStatus.PENDING;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "UPDATED_AT", nullable = false)
     private Instant updatedAt;
 
     @PrePersist

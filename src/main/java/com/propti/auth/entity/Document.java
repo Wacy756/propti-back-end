@@ -17,30 +17,30 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "documents")
+@Table(name = "DOCUMENTS")
 public class Document {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "ID", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "tenancy_id", nullable = false)
+    @Column(name = "TENANCY_ID", nullable = false)
     private UUID tenancyId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "type", nullable = false)
+    @Column(name = "TYPE", nullable = false)
     private String type;
 
-    @Column(name = "url")
+    @Column(name = "URL")
     private String url;
 
-    @Column(name = "shared_with", nullable = false)
+    @Column(name = "SHARED_WITH", nullable = false)
     private String sharedWith; // TENANT, LANDLORD, AGENT, ALL
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private Instant createdAt;
 
     @PrePersist

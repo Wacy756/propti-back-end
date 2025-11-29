@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "invites")
+@Table(name = "INVITES")
 public class Invite {
 
     public enum Status {
@@ -30,34 +30,34 @@ public class Invite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "ID", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "tenant_email", nullable = false)
+    @Column(name = "TENANT_EMAIL", nullable = false)
     private String tenantEmail;
 
-    @Column(name = "tenant_id")
+    @Column(name = "TENANT_ID")
     private String tenantId;
 
-    @Column(name = "tenancy_id")
+    @Column(name = "TENANCY_ID")
     private UUID tenancyId;
 
-    @Column(name = "inviter_role")
+    @Column(name = "INVITER_ROLE")
     private String inviterRole;
 
-    @Column(name = "inviter_name")
+    @Column(name = "INVITER_NAME")
     private String inviterName;
 
-    @Column(name = "property_address")
+    @Column(name = "PROPERTY_ADDRESS")
     private String propertyAddress;
 
-    @Column(name = "invitee_role")
+    @Column(name = "INVITEE_ROLE")
     private String inviteeRole = "tenant";
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "STATUS", nullable = false)
     private Status status = Status.PENDING;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
 }

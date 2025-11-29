@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "tenancies")
+@Table(name = "TENANCIES")
 public class Tenancy {
 
     public enum TenantStatus {
@@ -42,58 +42,58 @@ public class Tenancy {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "ID", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "landlord_id", nullable = false)
+    @Column(name = "LANDLORD_ID", nullable = false)
     private String landlordId;
 
-    @Column(name = "property_id", nullable = false)
+    @Column(name = "PROPERTY_ID", nullable = false)
     private String propertyId;
 
-    @Column(name = "tenant_id", nullable = false)
+    @Column(name = "TENANT_ID", nullable = false)
     private String tenantId;
 
-    @Column(name = "tenant_name")
+    @Column(name = "TENANT_NAME")
     private String tenantName;
 
-    @Column(name = "tenant_email")
+    @Column(name = "TENANT_EMAIL")
     private String tenantEmail;
 
-    @Column(name = "owner_id")
+    @Column(name = "OWNER_ID")
     private String ownerId;
 
-    @Column(name = "owner_email")
+    @Column(name = "OWNER_EMAIL")
     private String ownerEmail;
 
-    @Column(name = "start_date")
+    @Column(name = "START_DATE")
     private String startDate;
 
-    @Column(name = "monthly_rent")
+    @Column(name = "MONTHLY_RENT")
     private Integer monthlyRent;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "tenant_status", nullable = false)
+    @Column(name = "TENANT_STATUS", nullable = false)
     private TenantStatus tenantStatus = TenantStatus.PENDING;
 
-    @Column(name = "invite_sent_at")
+    @Column(name = "INVITE_SENT_AT")
     private Instant inviteSentAt;
 
-    @Column(name = "invite_accepted_at")
+    @Column(name = "INVITE_ACCEPTED_AT")
     private Instant inviteAcceptedAt;
 
-    @Column(name = "reference_status")
+    @Column(name = "REFERENCE_STATUS")
     @Enumerated(EnumType.STRING)
     private ReferenceStatus referenceStatus = ReferenceStatus.NOT_STARTED;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "agreement_status")
+    @Column(name = "AGREEMENT_STATUS")
     private AgreementStatus agreementStatus = AgreementStatus.NOT_SENT;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private Instant createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "UPDATED_AT", nullable = false)
     private Instant updatedAt;
 
     @PrePersist

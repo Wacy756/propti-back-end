@@ -14,35 +14,35 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "properties")
+@Table(name = "PROPERTIES")
 public class Property {
 
     @Id
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "ID", nullable = false, updatable = false)
     private String id;
 
-    @Column(name = "landlord_id", nullable = false)
+    @Column(name = "LANDLORD_ID", nullable = false)
     private String landlordId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "address")
+    @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "postcode")
+    @Column(name = "POSTCODE")
     private String postcode;
 
-    @Column(name = "rent")
+    @Column(name = "RENT")
     private Integer rent;
 
-    @Column(name = "status")
+    @Column(name = "STATUS")
     private String status;
 
-    @Column(name = "paid")
+    @Column(name = "PAID")
     private Boolean paid = Boolean.FALSE;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private Instant createdAt;
 
     @PrePersist

@@ -3,7 +3,9 @@ package com.propti.controller;
 import com.propti.auth.dto.MaintenanceRequestDto;
 import com.propti.auth.model.UserPrincipal;
 import com.propti.auth.service.MaintenanceRequestService;
+
 import java.util.List;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,7 @@ public class LandlordRequestController {
     public List<MaintenanceRequestDto> getOpenRequests(@RequestAttribute(name = UserPrincipal.REQUEST_ATTRIBUTE, required = false) UserPrincipal principal) {
         UserPrincipal authenticated = requireAuthenticated(principal);
         requireRole(authenticated, "landlord-plus");
-         return maintenanceRequestService.getOpenRequestsForLandlord(authenticated.userId());
+        return maintenanceRequestService.getOpenRequestsForLandlord(authenticated.userId());
     }
 
     private UserPrincipal requireAuthenticated(UserPrincipal principal) {
